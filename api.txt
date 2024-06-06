@@ -1,0 +1,294 @@
+2024-06-06 16:57:20.148 +08:00 [INF] User profile is available. Using 'C:\Users\Administrator\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-06-06 16:57:20.353 +08:00 [INF] Now listening on: https://localhost:44390
+2024-06-06 16:57:20.354 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-06 16:57:20.355 +08:00 [INF] Hosting environment: Development
+2024-06-06 16:57:20.355 +08:00 [INF] Content root path: D:\Kuriyama\Study\Projects\oidc\OIDC\ResourceServer
+2024-06-06 16:58:21.098 +08:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:44390/api/DataEventRecords/ - null null
+2024-06-06 16:58:21.113 +08:00 [INF] CORS policy execution successful.
+2024-06-06 16:58:21.115 +08:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:44390/api/DataEventRecords/ - 204 null null 18.2996ms
+2024-06-06 16:58:21.121 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44390/api/DataEventRecords/ - null null
+2024-06-06 16:58:21.127 +08:00 [INF] CORS policy execution successful.
+2024-06-06 16:58:21.195 +08:00 [INF] Start processing HTTP request GET https://localhost:44395/.well-known/openid-configuration
+2024-06-06 16:58:21.204 +08:00 [INF] Sending HTTP request GET https://localhost:44395/.well-known/openid-configuration
+2024-06-06 16:58:21.245 +08:00 [INF] Received HTTP response headers after 38.6669ms - 200
+2024-06-06 16:58:21.249 +08:00 [INF] End processing HTTP request after 56.1232ms - 200
+2024-06-06 16:58:21.253 +08:00 [INF] The configuration request was successfully sent to "https://localhost:44395/.well-known/openid-configuration": {}.
+2024-06-06 16:58:21.272 +08:00 [INF] The configuration response returned by "https://localhost:44395/.well-known/openid-configuration" was successfully extracted: {
+  "issuer": "https://localhost:44395/",
+  "authorization_endpoint": "https://localhost:44395/connect/authorize",
+  "token_endpoint": "https://localhost:44395/connect/token",
+  "introspection_endpoint": "https://localhost:44395/connect/introspect",
+  "end_session_endpoint": "https://localhost:44395/connect/logout",
+  "userinfo_endpoint": "https://localhost:44395/connect/userinfo",
+  "jwks_uri": "https://localhost:44395/.well-known/jwks",
+  "grant_types_supported": [
+    "authorization_code",
+    "implicit",
+    "client_credentials",
+    "refresh_token"
+  ],
+  "response_types_supported": [
+    "code",
+    "code id_token",
+    "code id_token token",
+    "code token"
+  ],
+  "response_modes_supported": [
+    "form_post",
+    "fragment",
+    "query"
+  ],
+  "scopes_supported": [
+    "openid",
+    "offline_access",
+    "email",
+    "profile",
+    "roles",
+    "dataEventRecords"
+  ],
+  "claims_supported": [
+    "aud",
+    "exp",
+    "iat",
+    "iss",
+    "sub"
+  ],
+  "id_token_signing_alg_values_supported": [
+    "RS256"
+  ],
+  "code_challenge_methods_supported": [
+    "plain",
+    "S256"
+  ],
+  "subject_types_supported": [
+    "public"
+  ],
+  "token_endpoint_auth_methods_supported": [
+    "client_secret_post",
+    "private_key_jwt",
+    "client_secret_basic"
+  ],
+  "introspection_endpoint_auth_methods_supported": [
+    "client_secret_post",
+    "private_key_jwt",
+    "client_secret_basic"
+  ],
+  "claims_parameter_supported": false,
+  "request_parameter_supported": false,
+  "request_uri_parameter_supported": false,
+  "authorization_response_iss_parameter_supported": true
+}.
+2024-06-06 16:58:21.281 +08:00 [INF] Start processing HTTP request GET https://localhost:44395/.well-known/jwks
+2024-06-06 16:58:21.282 +08:00 [INF] Sending HTTP request GET https://localhost:44395/.well-known/jwks
+2024-06-06 16:58:21.292 +08:00 [INF] Received HTTP response headers after 10.2474ms - 200
+2024-06-06 16:58:21.293 +08:00 [INF] End processing HTTP request after 11.2348ms - 200
+2024-06-06 16:58:21.294 +08:00 [INF] The cryptography request was successfully sent to "https://localhost:44395/.well-known/jwks": {}.
+2024-06-06 16:58:21.295 +08:00 [INF] The cryptography response returned by "https://localhost:44395/.well-known/jwks" was successfully extracted: {
+  "keys": [
+    {
+      "kid": "7E1327FE418CCB7941E73E5534C81F4B29067381",
+      "use": "sig",
+      "kty": "RSA",
+      "alg": "RS256",
+      "e": "AQAB",
+      "n": "xNiIySwMhF61-0NHyjwYh-QeJ7TyW8dKHGlofPURJcLT8NyDzlx4GgHq0Po-cYE80JMDl8k8u_hn3ve9QfKc-Jtgn2fXkUHNf6B9RdwrtT7JJewcfCQvLrcUXZ0WRNYqzTvJlUbBNTZ9wf1bkUo-F1XemH4fd5XPNou17bUJHvFX0Qmj_fOCwY3qxuRIZx371ArgUv-NryolOwjRkc71LZ-xrREGmAHTd8eHxzxnvoRuVSOMqt5Ef8oViTCRpw9x1DUEZO16Os7W6g8B57geqtI1oGfuKJZgZoJf9MAd0HrqjFhN9N0T2blU2STPBJcxn1m45V-QNmWbfUfwZ7fVrQ",
+      "x5t": "fhMn_kGMy3lB5z5VNMgfSykGc4E",
+      "x5c": [
+        "MIIC9TCCAd2gAwIBAgIJANKENXHuDDIUMA0GCSqGSIb3DQEBCwUAMDAxLjAsBgNVBAMTJU9wZW5JZGRpY3QgU2VydmVyIFNpZ25pbmcgQ2VydGlmaWNhdGUwHhcNMjQwMzExMDYzNDEzWhcNMjYwMzExMDYzNDEzWjAwMS4wLAYDVQQDEyVPcGVuSWRkaWN0IFNlcnZlciBTaWduaW5nIENlcnRpZmljYXRlMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxNiIySwMhF61+0NHyjwYh+QeJ7TyW8dKHGlofPURJcLT8NyDzlx4GgHq0Po+cYE80JMDl8k8u/hn3ve9QfKc+Jtgn2fXkUHNf6B9RdwrtT7JJewcfCQvLrcUXZ0WRNYqzTvJlUbBNTZ9wf1bkUo+F1XemH4fd5XPNou17bUJHvFX0Qmj/fOCwY3qxuRIZx371ArgUv+NryolOwjRkc71LZ+xrREGmAHTd8eHxzxnvoRuVSOMqt5Ef8oViTCRpw9x1DUEZO16Os7W6g8B57geqtI1oGfuKJZgZoJf9MAd0HrqjFhN9N0T2blU2STPBJcxn1m45V+QNmWbfUfwZ7fVrQIDAQABoxIwEDAOBgNVHQ8BAf8EBAMCB4AwDQYJKoZIhvcNAQELBQADggEBAMLSbPS2wlMEGmGLrcNrCWIRomOLVLKuiOW0z/kFfz7i91//Orvdln4YE/nYZ4YcyRpx0QuzjE0y0SwcOmOeWK7ZhlDjZqqLep+cp3qbfMgvm5p2RtgKJXYkwqViKgdX+UgD+97RG0hYT02NQcYYy3yHCbDSuEwowKpikyns+nndMvfn/etazZ70LX8iRNNKKqOVwdy9IAiplqHBWDObfRldJS3eGdLXVAxaI9vyDJEsyD8ybHg5m4c4XG+ntXeS/XmLJOZhiPpIarQOZVIcxmssxthwF/tMV9YZ1ZlaN4zv4jfTnfSfM/RPz3IxVraFunwKic0TjzKl0nIBfq2IZ54="
+      ]
+    }
+  ]
+}.
+2024-06-06 16:58:21.317 +08:00 [INF] Start processing HTTP request POST https://localhost:44395/connect/introspect
+2024-06-06 16:58:21.318 +08:00 [INF] Sending HTTP request POST https://localhost:44395/connect/introspect
+2024-06-06 16:58:21.367 +08:00 [INF] Received HTTP response headers after 49.3077ms - 200
+2024-06-06 16:58:21.367 +08:00 [INF] End processing HTTP request after 50.2789ms - 200
+2024-06-06 16:58:21.368 +08:00 [INF] The token request was successfully sent to "https://localhost:44395/connect/introspect": {
+  "token": "[redacted]",
+  "token_type_hint": "access_token",
+  "client_id": "rs_dataEventRecordsApi",
+  "client_secret": "[redacted]"
+}.
+2024-06-06 16:58:21.371 +08:00 [INF] The token response returned by "https://localhost:44395/connect/introspect" was successfully extracted: {
+  "active": true,
+  "iss": "https://localhost:44395/",
+  "username": "2410128587@qq.com",
+  "sub": "62e84c99-c58f-4957-934b-b1ec0a177320",
+  "scope": "openid profile email dataEventRecords offline_access",
+  "jti": "7985caf9-6aeb-46f0-855f-1f74f47f0067",
+  "token_type": "Bearer",
+  "token_usage": "access_token",
+  "client_id": "vueclient",
+  "iat": 1717664299,
+  "nbf": 1717664299,
+  "exp": 1717667899,
+  "aud": "rs_dataEventRecordsApi",
+  "name": "2410128587@qq.com",
+  "email": "2410128587@qq.com"
+}.
+2024-06-06 16:58:21.385 +08:00 [INF] Executing endpoint 'ResourceServer.Controllers.DataEventRecordsController.Get (ResourceServer)'
+2024-06-06 16:58:21.392 +08:00 [INF] Route matched with {action = "Get", controller = "DataEventRecords"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller ResourceServer.Controllers.DataEventRecordsController (ResourceServer).
+2024-06-06 16:58:21.457 +08:00 [FTL] Getting a the existing records
+2024-06-06 16:58:21.918 +08:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "d"."Id", "d"."Description", "d"."Name", "d"."Timestamp"
+FROM "DataEventRecords" AS "d"
+2024-06-06 16:58:21.957 +08:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ResourceServer.Model.DataEventRecord, ResourceServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-06 16:58:22.029 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44390/api/DataEventRecords/ - null null
+2024-06-06 16:58:22.030 +08:00 [INF] Executed action ResourceServer.Controllers.DataEventRecordsController.Get (ResourceServer) in 634.8615ms
+2024-06-06 16:58:22.031 +08:00 [INF] CORS policy execution successful.
+2024-06-06 16:58:22.031 +08:00 [INF] Executed endpoint 'ResourceServer.Controllers.DataEventRecordsController.Get (ResourceServer)'
+2024-06-06 16:58:22.032 +08:00 [INF] Start processing HTTP request POST https://localhost:44395/connect/introspect
+2024-06-06 16:58:22.033 +08:00 [INF] Sending HTTP request POST https://localhost:44395/connect/introspect
+2024-06-06 16:58:22.037 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44390/api/DataEventRecords/ - 200 181 application/json; charset=utf-8 916.497ms
+2024-06-06 16:58:22.054 +08:00 [INF] Received HTTP response headers after 20.9405ms - 200
+2024-06-06 16:58:22.054 +08:00 [INF] End processing HTTP request after 21.7804ms - 200
+2024-06-06 16:58:22.054 +08:00 [INF] The token request was successfully sent to "https://localhost:44395/connect/introspect": {
+  "token": "[redacted]",
+  "token_type_hint": "access_token",
+  "client_id": "rs_dataEventRecordsApi",
+  "client_secret": "[redacted]"
+}.
+2024-06-06 16:58:22.055 +08:00 [INF] The token response returned by "https://localhost:44395/connect/introspect" was successfully extracted: {
+  "active": true,
+  "iss": "https://localhost:44395/",
+  "username": "2410128587@qq.com",
+  "sub": "62e84c99-c58f-4957-934b-b1ec0a177320",
+  "scope": "openid profile email dataEventRecords offline_access",
+  "jti": "7985caf9-6aeb-46f0-855f-1f74f47f0067",
+  "token_type": "Bearer",
+  "token_usage": "access_token",
+  "client_id": "vueclient",
+  "iat": 1717664299,
+  "nbf": 1717664299,
+  "exp": 1717667899,
+  "aud": "rs_dataEventRecordsApi",
+  "name": "2410128587@qq.com",
+  "email": "2410128587@qq.com"
+}.
+2024-06-06 16:58:22.057 +08:00 [INF] Executing endpoint 'ResourceServer.Controllers.DataEventRecordsController.Get (ResourceServer)'
+2024-06-06 16:58:22.057 +08:00 [INF] Route matched with {action = "Get", controller = "DataEventRecords"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller ResourceServer.Controllers.DataEventRecordsController (ResourceServer).
+2024-06-06 16:58:22.058 +08:00 [FTL] Getting a the existing records
+2024-06-06 16:58:22.099 +08:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "d"."Id", "d"."Description", "d"."Name", "d"."Timestamp"
+FROM "DataEventRecords" AS "d"
+2024-06-06 16:58:22.100 +08:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ResourceServer.Model.DataEventRecord, ResourceServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-06 16:58:22.101 +08:00 [INF] Executed action ResourceServer.Controllers.DataEventRecordsController.Get (ResourceServer) in 43.3134ms
+2024-06-06 16:58:22.101 +08:00 [INF] Executed endpoint 'ResourceServer.Controllers.DataEventRecordsController.Get (ResourceServer)'
+2024-06-06 16:58:22.101 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44390/api/DataEventRecords/ - 200 181 application/json; charset=utf-8 72.1973ms
+2024-06-06 16:58:22.102 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44390/api/DataEventRecords/ - null null
+2024-06-06 16:58:22.102 +08:00 [INF] CORS policy execution successful.
+2024-06-06 16:58:22.105 +08:00 [INF] Start processing HTTP request POST https://localhost:44395/connect/introspect
+2024-06-06 16:58:22.105 +08:00 [INF] Sending HTTP request POST https://localhost:44395/connect/introspect
+2024-06-06 16:58:22.125 +08:00 [INF] Received HTTP response headers after 19.9907ms - 200
+2024-06-06 16:58:22.125 +08:00 [INF] End processing HTTP request after 20.7453ms - 200
+2024-06-06 16:58:22.126 +08:00 [INF] The token request was successfully sent to "https://localhost:44395/connect/introspect": {
+  "token": "[redacted]",
+  "token_type_hint": "access_token",
+  "client_id": "rs_dataEventRecordsApi",
+  "client_secret": "[redacted]"
+}.
+2024-06-06 16:58:22.128 +08:00 [INF] The token response returned by "https://localhost:44395/connect/introspect" was successfully extracted: {
+  "active": true,
+  "iss": "https://localhost:44395/",
+  "username": "2410128587@qq.com",
+  "sub": "62e84c99-c58f-4957-934b-b1ec0a177320",
+  "scope": "openid profile email dataEventRecords offline_access",
+  "jti": "7985caf9-6aeb-46f0-855f-1f74f47f0067",
+  "token_type": "Bearer",
+  "token_usage": "access_token",
+  "client_id": "vueclient",
+  "iat": 1717664299,
+  "nbf": 1717664299,
+  "exp": 1717667899,
+  "aud": "rs_dataEventRecordsApi",
+  "name": "2410128587@qq.com",
+  "email": "2410128587@qq.com"
+}.
+2024-06-06 16:58:22.130 +08:00 [INF] Executing endpoint 'ResourceServer.Controllers.DataEventRecordsController.Get (ResourceServer)'
+2024-06-06 16:58:22.130 +08:00 [INF] Route matched with {action = "Get", controller = "DataEventRecords"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller ResourceServer.Controllers.DataEventRecordsController (ResourceServer).
+2024-06-06 16:58:22.132 +08:00 [FTL] Getting a the existing records
+2024-06-06 16:58:22.141 +08:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "d"."Id", "d"."Description", "d"."Name", "d"."Timestamp"
+FROM "DataEventRecords" AS "d"
+2024-06-06 16:58:22.142 +08:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ResourceServer.Model.DataEventRecord, ResourceServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-06 16:58:22.142 +08:00 [INF] Executed action ResourceServer.Controllers.DataEventRecordsController.Get (ResourceServer) in 11.58ms
+2024-06-06 16:58:22.142 +08:00 [INF] Executed endpoint 'ResourceServer.Controllers.DataEventRecordsController.Get (ResourceServer)'
+2024-06-06 16:58:22.144 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44390/api/DataEventRecords/ - 200 181 application/json; charset=utf-8 42.3072ms
+2024-06-06 16:58:22.145 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44390/api/DataEventRecords/ - null null
+2024-06-06 16:58:22.145 +08:00 [INF] CORS policy execution successful.
+2024-06-06 16:58:22.146 +08:00 [INF] Start processing HTTP request POST https://localhost:44395/connect/introspect
+2024-06-06 16:58:22.146 +08:00 [INF] Sending HTTP request POST https://localhost:44395/connect/introspect
+2024-06-06 16:58:22.165 +08:00 [INF] Received HTTP response headers after 19.0574ms - 200
+2024-06-06 16:58:22.166 +08:00 [INF] End processing HTTP request after 19.8802ms - 200
+2024-06-06 16:58:22.166 +08:00 [INF] The token request was successfully sent to "https://localhost:44395/connect/introspect": {
+  "token": "[redacted]",
+  "token_type_hint": "access_token",
+  "client_id": "rs_dataEventRecordsApi",
+  "client_secret": "[redacted]"
+}.
+2024-06-06 16:58:22.166 +08:00 [INF] The token response returned by "https://localhost:44395/connect/introspect" was successfully extracted: {
+  "active": true,
+  "iss": "https://localhost:44395/",
+  "username": "2410128587@qq.com",
+  "sub": "62e84c99-c58f-4957-934b-b1ec0a177320",
+  "scope": "openid profile email dataEventRecords offline_access",
+  "jti": "7985caf9-6aeb-46f0-855f-1f74f47f0067",
+  "token_type": "Bearer",
+  "token_usage": "access_token",
+  "client_id": "vueclient",
+  "iat": 1717664299,
+  "nbf": 1717664299,
+  "exp": 1717667899,
+  "aud": "rs_dataEventRecordsApi",
+  "name": "2410128587@qq.com",
+  "email": "2410128587@qq.com"
+}.
+2024-06-06 16:58:22.167 +08:00 [INF] Executing endpoint 'ResourceServer.Controllers.DataEventRecordsController.Get (ResourceServer)'
+2024-06-06 16:58:22.167 +08:00 [INF] Route matched with {action = "Get", controller = "DataEventRecords"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller ResourceServer.Controllers.DataEventRecordsController (ResourceServer).
+2024-06-06 16:58:22.168 +08:00 [FTL] Getting a the existing records
+2024-06-06 16:58:22.168 +08:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "d"."Id", "d"."Description", "d"."Name", "d"."Timestamp"
+FROM "DataEventRecords" AS "d"
+2024-06-06 16:58:22.169 +08:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ResourceServer.Model.DataEventRecord, ResourceServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-06 16:58:22.169 +08:00 [INF] Executed action ResourceServer.Controllers.DataEventRecordsController.Get (ResourceServer) in 1.776ms
+2024-06-06 16:58:22.169 +08:00 [INF] Executed endpoint 'ResourceServer.Controllers.DataEventRecordsController.Get (ResourceServer)'
+2024-06-06 16:58:22.170 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44390/api/DataEventRecords/ - 200 181 application/json; charset=utf-8 24.9415ms
+2024-06-06 16:58:22.170 +08:00 [INF] Request starting HTTP/2 GET https://localhost:44390/api/DataEventRecords/ - null null
+2024-06-06 16:58:22.171 +08:00 [INF] CORS policy execution successful.
+2024-06-06 16:58:22.171 +08:00 [INF] Start processing HTTP request POST https://localhost:44395/connect/introspect
+2024-06-06 16:58:22.171 +08:00 [INF] Sending HTTP request POST https://localhost:44395/connect/introspect
+2024-06-06 16:58:22.187 +08:00 [INF] Received HTTP response headers after 15.215ms - 200
+2024-06-06 16:58:22.187 +08:00 [INF] End processing HTTP request after 15.8789ms - 200
+2024-06-06 16:58:22.187 +08:00 [INF] The token request was successfully sent to "https://localhost:44395/connect/introspect": {
+  "token": "[redacted]",
+  "token_type_hint": "access_token",
+  "client_id": "rs_dataEventRecordsApi",
+  "client_secret": "[redacted]"
+}.
+2024-06-06 16:58:22.188 +08:00 [INF] The token response returned by "https://localhost:44395/connect/introspect" was successfully extracted: {
+  "active": true,
+  "iss": "https://localhost:44395/",
+  "username": "2410128587@qq.com",
+  "sub": "62e84c99-c58f-4957-934b-b1ec0a177320",
+  "scope": "openid profile email dataEventRecords offline_access",
+  "jti": "7985caf9-6aeb-46f0-855f-1f74f47f0067",
+  "token_type": "Bearer",
+  "token_usage": "access_token",
+  "client_id": "vueclient",
+  "iat": 1717664299,
+  "nbf": 1717664299,
+  "exp": 1717667899,
+  "aud": "rs_dataEventRecordsApi",
+  "name": "2410128587@qq.com",
+  "email": "2410128587@qq.com"
+}.
+2024-06-06 16:58:22.188 +08:00 [INF] Executing endpoint 'ResourceServer.Controllers.DataEventRecordsController.Get (ResourceServer)'
+2024-06-06 16:58:22.189 +08:00 [INF] Route matched with {action = "Get", controller = "DataEventRecords"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Get() on controller ResourceServer.Controllers.DataEventRecordsController (ResourceServer).
+2024-06-06 16:58:22.189 +08:00 [FTL] Getting a the existing records
+2024-06-06 16:58:22.190 +08:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "d"."Id", "d"."Description", "d"."Name", "d"."Timestamp"
+FROM "DataEventRecords" AS "d"
+2024-06-06 16:58:22.190 +08:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ResourceServer.Model.DataEventRecord, ResourceServer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-06-06 16:58:22.190 +08:00 [INF] Executed action ResourceServer.Controllers.DataEventRecordsController.Get (ResourceServer) in 1.6377ms
+2024-06-06 16:58:22.191 +08:00 [INF] Executed endpoint 'ResourceServer.Controllers.DataEventRecordsController.Get (ResourceServer)'
+2024-06-06 16:58:22.191 +08:00 [INF] Request finished HTTP/2 GET https://localhost:44390/api/DataEventRecords/ - 200 181 application/json; charset=utf-8 20.4074ms

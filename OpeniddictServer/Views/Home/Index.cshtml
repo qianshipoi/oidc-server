@@ -1,0 +1,59 @@
+﻿@using static OpeniddictServer.Controllers.HomeController
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <div class="row">
+        @foreach (Client item in Model)
+        {
+            <div class="col-sm-4 ">
+                <div class="card text-center mb-3">
+                    <div class="card-header">
+                        @item.ClientId
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@item.DisplayName</h5>
+                        <div class="accordion" id="@(item.ClientId + "accordionExample")">
+                            <div class="card text-center text-white bg-success mb-3">
+                                <div class="card-header p-0" id="@(item.ClientId + "headingOne")">
+                                        <button class="btn btn-link btn-sm text-white" type="button" data-toggle="collapse" data-target="#@(item.ClientId + "collapseOne")" aria-expanded="false" aria-controls="@(item.ClientId + "collapseOne")">
+                                            RedirectUris
+                                        </button>
+                                </div>
+                                <div id="@(item.ClientId + "collapseOne")" class="collapse" aria-labelledby="@(item.ClientId + "headingOne")" data-parent="#@(item.ClientId + "accordionExample")">
+                                    <ul class="card-body list-group p-0">
+                                        @foreach (string redirectUri in item.RedirectUris)
+                                        {
+                                            <li class="list-group-item bg-transparent  p-0">@redirectUri</li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card text-center text-white bg-success mb-3">
+                                <div class="card-header p-0" id="@(item.ClientId + "headingTwo")">
+                                        <button class="btn btn-link btn-sm text-white" type="button" data-toggle="collapse" data-target="#@(item.ClientId + "collapseTwo")" aria-expanded="false" aria-controls="@(item.ClientId + "collapseTwo")">
+                                            Permissions
+                                        </button>
+                                </div>
+                                <div id="@(item.ClientId + "collapseTwo")" class="collapse" aria-labelledby="@(item.ClientId + "headingTwo")" data-parent="#@(item.ClientId + "accordionExample")">
+                                    <ul class="card-body list-group p-0">
+                                        @foreach (string premission in item.Permissions)
+                                        {
+                                            <li class="list-group-item bg-transparent p-0">@premission</li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-outline-primary">Go Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
