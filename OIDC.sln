@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpeniddictServer", "Openidd
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResourceServer", "ResourceServer\ResourceServer.csproj", "{E299CB10-FEBB-4253-90BD-0BF84A86367D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clinets", "Clinets", "{897679E7-AF21-41E9-BE3B-FC94E3065F78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfBrowserAuthClient", "WpfBrowserAuthClient\WpfBrowserAuthClient.csproj", "{E46AE273-4F1D-490F-9E48-9632B8A2EDA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{E299CB10-FEBB-4253-90BD-0BF84A86367D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E299CB10-FEBB-4253-90BD-0BF84A86367D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E299CB10-FEBB-4253-90BD-0BF84A86367D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E46AE273-4F1D-490F-9E48-9632B8A2EDA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E46AE273-4F1D-490F-9E48-9632B8A2EDA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E46AE273-4F1D-490F-9E48-9632B8A2EDA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E46AE273-4F1D-490F-9E48-9632B8A2EDA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E46AE273-4F1D-490F-9E48-9632B8A2EDA3} = {897679E7-AF21-41E9-BE3B-FC94E3065F78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3A82701C-8995-4053-A016-625653FB55AB}

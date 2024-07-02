@@ -2,70 +2,254 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #0366d6;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
+
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
 button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+    font-size: 1rem;
+    line-height: inherit;
 }
 
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+:root {
+    --sun-clr: #f3d05e;
+    --dark-clr: hsl(246, 23%, 16%);
+    --light-clr: hsl(240, 100%, 98%);
+    --clr-foreground: var(--dark-clr); /*hsl(0 0% 0%);*/
+    --clr-background: var(--light-clr);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --clr-background: var(--dark-clr);
+        --clr-foreground: var(--light-clr);
+    }
+}
+
+.light-theme {
+    --clr-foreground: var(--dark-clr);
+    --clr-background: var(--light-clr);
+}
+
+.dark-theme {
+    --clr-background: var(--dark-clr);
+    --clr-foreground: var(--light-clr);
+}
+
+#switch-theme {
+    cursor: pointer;
+    background: 0;
+    border: 0;
+    opacity: 0.8;
+    padding: 0.2rem;
+    border-radius: 50%;
+    position: relative;
+    isolation: isolate;
+}
+
+    #switch-theme svg {
+        fill: var(--clr-foreground);
+    }
+
+    #switch-theme::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: hsl(0 0% 50% / 0.2);
+        border-radius: inherit;
+        transform: scale(0);
+        opacity: 0;
+        z-index: -1;
+    }
+
+.light-theme #switch-theme::before {
+    animation: pulseToLight 650ms ease-out;
+}
+
+.dark-theme #switch-theme::before {
+    animation: pulseToDark 650ms ease-out;
+}
+
+#switch-theme::after {
+    content: attr(aria-label);
+    position: absolute;
+    color: var(--clr-background);
+    background: var(--clr-foreground);
+    width: max-content;
+    font-size: 0.8rem;
+    /*right: 50%;*/
+    /*top: calc(50% - 1rem);*/
+    top: calc(100% + 1rem);
+    left: 50%;
+    /*left: calc(50%);*/
+    margin: 0 auto;
+    padding: 0.5em 1em;
+    border-radius: 0.125em;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0);
+    transform-origin: top;
+    transition: transform 0ms linear 100ms, opacity 100ms linear;
+}
+
+#switch-theme:hover,
+#switch-theme:focus {
+    outline: 0;
+    opacity: 1;
+    background: hsl(0 0% 50% / 0.15);
+}
+
+    #switch-theme:hover::after,
+    #switch-theme:focus-visible::after {
+        opacity: 0.7;
+        transform: scale(1) translateX(-50%);
+        transition: transform 70ms linear, opacity 70ms linear;
+    }
+
+.toggle-circle {
+    transition: transform 500ms ease-out;
+}
+
+.light-theme .toggle-circle {
+    transform: translateX(-15%);
+}
+
+.toggle-sun {
+    transform-origin: center center;
+    transition: transform 750ms cubic-bezier(0.11, 0.14, 0.29, 1.32);
+}
+
+.moon-mask,
+.sun-core,
+.sun-rays {
+    transition: 750ms ease-out;
+    transform-origin: center center;
+}
+
+.dark-theme .moon-mask {
+    r: 9;
+    cx: 12;
+    cy: 4;
+}
+
+.light-theme .moon-mask {
+    r: 5;
+    transform: rotate(-90deg);
+    cx: 20;
+    cy: 0;
+}
+
+.dark-theme .sun-core {
+    transform: rotate(-40deg);
+}
+
+.dark-theme .sun-rays {
+    transform: rotate(-180deg);
+    opacity: 0;
+}
+
+@keyframes pulseToLight {
+    0% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+
+    10% {
+        transform: scale(1);
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulseToDark {
+    0% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+
+    10% {
+        transform: scale(1);
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+.light-theme .toggle-sun {
+    transform: rotate(0.5turn);
 }

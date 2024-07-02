@@ -18,13 +18,13 @@
                     <div class="card-body">
                         <h5 class="card-title">@item.DisplayName</h5>
                         <div class="accordion" id="@(item.ClientId + "accordionExample")">
-                            <div class="card text-center text-white bg-success mb-3">
+                            <div class="card text-center mb-3">
                                 <div class="card-header p-0" id="@(item.ClientId + "headingOne")">
-                                        <button class="btn btn-link btn-sm text-white" type="button" data-toggle="collapse" data-target="#@(item.ClientId + "collapseOne")" aria-expanded="false" aria-controls="@(item.ClientId + "collapseOne")">
+                                    <button class="btn btn-link btn-sm" type="button" data-bs-toggle="collapse"  data-bs-target="#@(item.ClientId + "collapseOne")" aria-expanded="false" aria-controls="@(item.ClientId + "collapseOne")">
                                             RedirectUris
                                         </button>
                                 </div>
-                                <div id="@(item.ClientId + "collapseOne")" class="collapse" aria-labelledby="@(item.ClientId + "headingOne")" data-parent="#@(item.ClientId + "accordionExample")">
+                                <div id="@(item.ClientId + "collapseOne")" class="collapse" aria-labelledby="@(item.ClientId + "headingOne")" data-bs-parent="#@(item.ClientId + "accordionExample")">
                                     <ul class="card-body list-group p-0">
                                         @foreach (string redirectUri in item.RedirectUris)
                                         {
@@ -33,13 +33,13 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="card text-center text-white bg-success mb-3">
+                            <div class="card text-center mb-3">
                                 <div class="card-header p-0" id="@(item.ClientId + "headingTwo")">
-                                        <button class="btn btn-link btn-sm text-white" type="button" data-toggle="collapse" data-target="#@(item.ClientId + "collapseTwo")" aria-expanded="false" aria-controls="@(item.ClientId + "collapseTwo")">
+                                    <button class="btn btn-link btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#@(item.ClientId + "collapseTwo")" aria-expanded="false" aria-controls="@(item.ClientId + "collapseTwo")">
                                             Permissions
                                         </button>
                                 </div>
-                                <div id="@(item.ClientId + "collapseTwo")" class="collapse" aria-labelledby="@(item.ClientId + "headingTwo")" data-parent="#@(item.ClientId + "accordionExample")">
+                                <div id="@(item.ClientId + "collapseTwo")" class="collapse" aria-labelledby="@(item.ClientId + "headingTwo")" data-bs-parent="#@(item.ClientId + "accordionExample")">
                                     <ul class="card-body list-group p-0">
                                         @foreach (string premission in item.Permissions)
                                         {

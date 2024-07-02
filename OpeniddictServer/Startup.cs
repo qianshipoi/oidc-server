@@ -79,7 +79,7 @@ public class Startup
         // (like pruning orphaned authorizations/tokens from the database) at regular intervals.
         services.AddQuartz(options =>
         {
-            options.UseMicrosoftDependencyInjectionJobFactory();
+            //options.UseMicrosoftDependencyInjectionJobFactory();
             options.UseSimpleTypeLoader();
             options.UseInMemoryStore();
         });
@@ -103,8 +103,29 @@ public class Startup
         services.AddQuartzHostedService(options => options.WaitForJobsToComplete = true);
 
         services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddOpenIdConnect("KeyCloak", "KeyCloak", options =>
-            {
+            .AddGitHub(options => {
+                options.SignInScheme = "Identity.External";
+                options.ClientId = Configuration["github:clientId"];
+                options.ClientSecret = Configuration["github:clientSecret"];
+                options.CallbackPath = "/oauth/callback/github";
+
+                // Grants access to read a user's profile data.
+                // https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
+                options.Scope.Add("read:user");
+
+                // Optional
+                // if you need an access token to call GitHub Apis
+                options.Events.OnCreatingTicket += context =>
+                {
+                    if (context.AccessToken is { })
+                    {
+                        context.Identity?.AddClaim(new Claim("access_token", context.AccessToken));
+                    }
+
+                    return Task.CompletedTask;
+                };
+            })
+            .AddOpenIdConnect("KeyCloak", "KeyCloak", options => {
                 options.SignInScheme = "Identity.External";
                 //Keycloak server
                 options.Authority = Configuration.GetSection("Keycloak")["ServerRealm"];
@@ -139,6 +160,26 @@ public class Startup
 
                 options.UseQuartz();
             })
+              //.AddClient(options =>
+              //{
+              //    options.AllowAuthorizationCodeFlow();
+
+              //    options.AddDevelopmentEncryptionCertificate()
+              //           .AddDevelopmentSigningCertificate();
+
+              //    options.UseAspNetCore()
+              //           .EnableRedirectionEndpointPassthrough();
+
+              //    options.UseSystemNetHttp()
+              //           .SetProductInformation(typeof(Program).Assembly);
+
+              //    options.UseWebProviders()
+              //           .AddGitHub(options => {
+              //                options.SetClientId("1b6710178b40584ae4cc")
+              //                       .SetClientSecret("5e3701545d450caba7f0afc5f30e90f4cc180c9c")
+              //                       .SetRedirectUri("oauth/callback/github");
+              //            });
+              //})
             .AddServer(options =>
             {
                 // Enable the authorization, logout, token and userinfo endpoints.

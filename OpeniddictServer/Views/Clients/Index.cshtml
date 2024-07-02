@@ -1,0 +1,21 @@
+﻿@using OpeniddictServer.ViewModels.Clients
+@using static OpeniddictServer.Controllers.ClientsController
+@model WpfClientAuthViewModel
+@{
+    ViewData["Title"] = "Client Page";
+}
+
+@section Scripts {
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            var hiddenLink = document.createElement("a");
+            hiddenLink.href = "@Html.Raw(Model.Url)";
+            hiddenLink.style.display = "none"; 
+            document.body.appendChild(hiddenLink);
+            hiddenLink.click();
+            document.body.removeChild(hiddenLink);
+        })
+    </script>
+}
+
+<p>如果应用没有自动启动，请<a href="@Model.Url">点击这里</a>尝试手动启动。</p>

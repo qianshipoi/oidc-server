@@ -108,6 +108,46 @@ namespace OpeniddictServer
                     });
                 }
 
+                if (await manager.FindByClientIdAsync("wpfbrowserclient") is null)
+                {
+                    await manager.CreateAsync(new OpenIddictApplicationDescriptor
+                    {
+                        ClientId = "wpfbrowserclient",
+                        ConsentType = ConsentTypes.Explicit,
+                        DisplayName = "wpf browser client PKCE",
+                        DisplayNames =
+                        {
+                            [CultureInfo.GetCultureInfo("fr-FR")] = "Application cliente MVC"
+                        },
+                        PostLogoutRedirectUris =
+                        {
+                            new Uri("https://localhost:44395/wpf-browser-auth-client-signout-callback")
+                        },
+                        RedirectUris =
+                        {
+                            new Uri("https://localhost:44395/wpf-browser-auth-client-callback")
+                        },
+                        Permissions =
+                        {
+                            Permissions.Endpoints.Authorization,
+                            Permissions.Endpoints.Logout,
+                            Permissions.Endpoints.Token,
+                            Permissions.Endpoints.Revocation,
+                            Permissions.GrantTypes.AuthorizationCode,
+                            Permissions.GrantTypes.RefreshToken,
+                            Permissions.ResponseTypes.Code,
+                            Permissions.Scopes.Email,
+                            Permissions.Scopes.Profile,
+                            Permissions.Scopes.Roles,
+                            Permissions.Prefixes.Scope + "dataEventRecords"
+                        },
+                        Requirements =
+                        {
+                            Requirements.Features.ProofKeyForCodeExchange
+                        }
+                    });
+                }
+
                 // API application CC
                 if (await manager.FindByClientIdAsync("CC") == null)
                 {

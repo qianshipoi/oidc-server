@@ -3,49 +3,84 @@
 
 @{
     ViewData["Title"] = "Log in";
+    // 根据ActiveForm的值，设置CSS类
+    var signupClass = ""; // Model.ActiveForm == "signup" ? "" : "slide-up";
+    var loginClass = ""; // Model.ActiveForm == "login" ? "" : "slide-up";
 }
-
-<h1>@ViewData["Title"]</h1>
 <div class="row">
     <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
-                <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-floating">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                    <label asp-for="Input.Email" class="form-label"></label>
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-floating">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
-                    <label asp-for="Input.Password" class="form-label"></label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div>
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe" class="form-label">
-                            <input class="form-check-input" asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
+        <section class="form-structor">
+
+            <form id="registerForm" class="signup @signupClass" asp-route-returnUrl="@Model.ReturnUrl" method="post" asp-page-handler="Register">
+                <h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
+                <div class="form-holder">
+                    <div class="form-floating">
+                        <input asp-for="RegisterInput.Email" class="input" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                        <span asp-validation-for="RegisterInput.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating">
+                        <input asp-for="RegisterInput.Password" class="input" autocomplete="new-password" aria-required="true" placeholder="password" />
+                        <span asp-validation-for="RegisterInput.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating">
+                        <input asp-for="RegisterInput.ConfirmPassword" class="input" autocomplete="new-password" aria-required="true" placeholder="confirm password" />
+                        <span asp-validation-for="RegisterInput.ConfirmPassword" class="text-danger"></span>
                     </div>
                 </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-                </div>
-                <div>
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
+                <button id="registerSubmit" type="submit" class="submit-btn">Sign up</button>
+            </form>
+
+            <form id="account" class="login @loginClass" method="post" asp-route-returnUrl="@Model.ReturnUrl" asp-page-handler="Login">
+                <div class="center">
+                    <h2 class="form-title" id="login"><span>or</span>Log in</h2>
+                    <div class="form-holder">
+                        <div class="form-floating">
+                            <input asp-for="Input.Email" class="input" placeholder="email" autocomplete="username" aria-required="true" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating">
+                            <input asp-for="Input.Password" class="input" placeholder="password" autocomplete="current-password" aria-required="true" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="checkbox">
+                            <label asp-for="Input.RememberMe" class="form-label">
+                                <input class="form-check-input fs-6" asp-for="Input.RememberMe" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <button id="login-submit" type="submit" class="submit-btn">Log in</button>
+                    </div>
+                    <div>
+                        <p>
+                            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                        </p>
+                        <p>
+                            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                        </p>
+                    </div>
                 </div>
             </form>
+
+            @if (!Model.ModelState.IsValid)
+            {
+                <div class="toast-container position-fixed top-0 end-0 p-3">
+                    <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <img src="..." class="rounded me-2" alt="...">
+                            <strong class="me-auto">Bootstrap</strong>
+                            <small>11 mins ago</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            <div asp-validation-summary="ModelOnly" role="alert"></div>
+                        </div>
+                    </div>
+                </div>
+            }
         </section>
     </div>
     <div class="col-md-6 col-md-offset-2">
@@ -55,25 +90,27 @@
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
+                        <div>
+                            <p>
+                                There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                                    article
+                                    about setting up this ASP.NET application to support logging in via external services
+                                </a>.
+                            </p>
+                        </div>
                 }
                 else
                 {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
+                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                            <div>
+                                <p>
+                                    @foreach (var provider in Model.ExternalLogins)
                                 {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
                                 }
-                            </p>
-                        </div>
-                    </form>
+                                </p>
+                            </div>
+                        </form>
                 }
             }
         </section>
@@ -82,4 +119,317 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+
+    <script>
+        const activeForm = '@Model.ActiveForm';
+        document.addEventListener("DOMContentLoaded", function () {
+            const slideUpClassName = "slide-up";
+            const loginBtn = document.getElementById('login');
+            const signupBtn = document.getElementById('signup');
+
+            const loginForm = loginBtn.parentNode.parentNode;
+            const signupForm = signupBtn.parentNode;
+           
+            function toggleForm(isSignUp) {
+                if(isSignUp){
+                    if (signupForm.classList.contains(slideUpClassName)) {
+                        signupForm.classList.remove(slideUpClassName);
+                    }
+                    if (!loginForm.classList.contains(slideUpClassName)) {
+                        loginForm.classList.add(slideUpClassName);
+                    }
+                }else{
+                    if (!signupForm.classList.contains(slideUpClassName)) {
+                        signupForm.classList.add(slideUpClassName);
+                    }
+                    if (loginForm.classList.contains(slideUpClassName)) {
+                        loginForm.classList.remove(slideUpClassName);
+                    }
+                }
+            }
+
+            toggleForm(activeForm === "signup");
+
+            loginBtn.addEventListener('click', (e) => toggleForm(false));
+
+            signupBtn.addEventListener('click', (e) => toggleForm(true));
+        });
+
+    </script>
 }
+
+<style>
+    .form-structor {
+        --login-bg-color: var(--bs-secondary-bg);
+        --login-title-color: var(--bs-heading-color, inherit);
+        --input-border-radius: 8px;
+        background-color: #222;
+        border-radius: 15px;
+        height: 550px;
+        width: 350px;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .form-structor::after {
+            content: "";
+            opacity: 0.8;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-repeat: no-repeat;
+            background-position: left bottom;
+            background-size: 500px;
+            background-image: url("https://images.unsplash.com/photo-1503602642458-232111445657?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bf884ad570b50659c5fa2dc2cfb20ecf&auto=format&fit=crop&w=1000&q=100");
+        }
+
+        .form-structor .signup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            width: 65%;
+            z-index: 5;
+            -webkit-transition: all 0.3s ease;
+        }
+
+            .form-structor .signup.slide-up {
+                top: 5%;
+                -webkit-transform: translate(-50%, 0%);
+                -webkit-transition: all 0.3s ease;
+            }
+
+                .form-structor .signup.slide-up .form-holder, .form-structor .signup.slide-up .submit-btn {
+                    opacity: 0;
+                    visibility: hidden;
+                }
+
+                .form-structor .signup.slide-up .le {
+                    font-size: 1em;
+                    cursor: pointer;
+                }
+
+
+                .form-structor .signup.slide-up .form-title {
+                    font-size: 1em;
+                    margin: 0;
+                    padding: 0;
+                    -webkit-transition: all 0.3s ease;
+                    cursor: pointer;
+                }
+
+                    .form-structor .signup.slide-up .form-title span {
+                        margin-right: 5px;
+                        opacity: 1;
+                        display: inline;
+                        visibility: visible;
+                        -webkit-transition: all 0.3s ease;
+                    }
+
+
+            .form-structor .signup .form-title {
+                color: #fff;
+                font-size: 1.7em;
+                text-align: center;
+            }
+
+                .form-structor .signup .form-title span {
+                    color: rgba(0, 0, 0, 0.4);
+                    opacity: 0;
+                    display:none;
+                    visibility: hidden;
+                    -webkit-transition: all 0.3s ease;
+                }
+
+            .form-structor .signup .form-holder {
+                border-radius: var(--input-border-radius);
+                background-color: #fff;
+                overflow: hidden;
+                margin-top: 50px;
+                opacity: 1;
+                visibility: visible;
+                -webkit-transition: all 0.3s ease;
+            }
+
+                .form-structor .signup .form-holder .input {
+                    border: 0;
+                    outline: none;
+                    box-shadow: none;
+                    display: block;
+                    height: 40px;
+                    line-height: 40px;
+                    padding: 8px 15px;
+                    border-bottom: 1px solid #eee;
+                    width: 100%;
+                    font-size: 12px;
+                }
+
+                    .form-structor .signup .form-holder .input:last-child {
+                        border-bottom: 0;
+                    }
+
+                    .form-structor .signup .form-holder .input::-webkit-input-placeholder {
+                        color: rgba(0, 0, 0, 0.4);
+                    }
+
+            .form-structor .signup .submit-btn {
+                background-color: rgba(0, 0, 0, 0.4);
+                color: rgba(255, 255, 255, 0.7);
+                border: 0;
+                border-radius: 15px;
+                display: block;
+                margin: 15px auto;
+                padding: 15px 45px;
+                width: 100%;
+                font-size: 13px;
+                font-weight: bold;
+                cursor: pointer;
+                opacity: 1;
+                visibility: visible;
+                -webkit-transition: all 0.3s ease;
+            }
+
+                .form-structor .signup .submit-btn:hover {
+                    transition: all 0.3s ease;
+                    background-color: rgba(0, 0, 0, 0.8);
+                }
+
+        .form-structor .login {
+            position: absolute;
+            top: 20%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--login-bg-color);
+            z-index: 5;
+            -webkit-transition: all 0.3s ease;
+        }
+
+            .form-structor .login::before {
+                content: "";
+                position: absolute;
+                left: 50%;
+                top: -20px;
+                -webkit-transform: translate(-50%, 0);
+                background-color: var(--login-bg-color);
+                width: 200%;
+                height: 250px;
+                border-radius: 50%;
+                z-index: 4;
+                -webkit-transition: all 0.3s ease;
+            }
+
+            .form-structor .login .center {
+                position: absolute;
+                top: calc(50% - 10%);
+                left: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                width: 65%;
+                z-index: 5;
+                -webkit-transition: all 0.3s ease;
+            }
+
+                .form-structor .login .center .form-title {
+                    color: var(--login-title-color);
+                    font-size: 1.7em;
+                    text-align: center;
+                }
+
+                    .form-structor .login .center .form-title span {
+                        color: rgba(0, 0, 0, 0.4);
+                        opacity: 0;
+                        display:none;
+                        visibility: hidden;
+                        -webkit-transition: all 0.3s ease;
+                    }
+
+                .form-structor .login .center .form-holder {
+                    border-radius: var(--input-border-radius);
+                    background-color: #fff;
+                    border: 1px solid #eee;
+                    overflow: hidden;
+                    margin-top: 50px;
+                    opacity: 1;
+                    visibility: visible;
+                    -webkit-transition: all 0.3s ease;
+                }
+
+                    .form-structor .login .center .form-holder .input {
+                        border: 0;
+                        outline: none;
+                        box-shadow: none;
+                        display: block;
+                        height: 40px;
+                        line-height: 40px;
+                        padding: 8px 15px;
+                        border-bottom: 1px solid #eee;
+                        width: 100%;
+                        font-size: 12px;
+                    }
+
+                        .form-structor .login .center .form-holder .input:last-child {
+                            border-bottom: 0;
+                        }
+
+                        .form-structor .login .center .form-holder .input::-webkit-input-placeholder {
+                            color: rgba(0, 0, 0, 0.4);
+                        }
+
+                .form-structor .login .center .submit-btn {
+                    background-color: #6B92A4;
+                    color: rgba(255, 255, 255, 0.7);
+                    border: 0;
+                    border-radius: 15px;
+                    display: block;
+                    margin: 15px auto;
+                    padding: 15px 45px;
+                    width: 100%;
+                    font-size: 13px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    opacity: 1;
+                    visibility: visible;
+                    -webkit-transition: all 0.3s ease;
+                }
+
+                    .form-structor .login .center .submit-btn:hover {
+                        transition: all 0.3s ease;
+                        background-color: rgba(0, 0, 0, 0.8);
+                    }
+
+            .form-structor .login.slide-up {
+                top: 90%;
+                -webkit-transition: all 0.3s ease;
+            }
+
+                .form-structor .login.slide-up .center {
+                    top: 10%;
+                    -webkit-transform: translate(-50%, 0%);
+                    -webkit-transition: all 0.3s ease;
+                }
+
+                .form-structor .login.slide-up .form-holder, .form-structor .login.slide-up .submit-btn {
+                    opacity: 0;
+                    visibility: hidden;
+                    -webkit-transition: all 0.3s ease;
+                }
+
+                .form-structor .login.slide-up .form-title {
+                    font-size: 1em;
+                    margin: 0;
+                    padding: 0;
+                    cursor: pointer;
+                    -webkit-transition: all 0.3s ease;
+                }
+
+                    .form-structor .login.slide-up .form-title span {
+                        margin-right: 5px;
+                        opacity: 1;
+                        display:initial;
+                        visibility: visible;
+                        -webkit-transition: all 0.3s ease;
+                    }
+</style>
